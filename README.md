@@ -1,5 +1,5 @@
 scala-dvvset
 ============
 
-scal-dvvset is a port of [Dotted Version Vector Sets](https://github.com/ricardobcl/Dotted-Version-Vectors).
+scala-dvvset is a port of [Dotted Version Vector Sets](https://github.com/ricardobcl/Dotted-Version-Vectors).
 
