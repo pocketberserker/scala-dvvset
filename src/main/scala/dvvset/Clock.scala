@@ -163,13 +163,13 @@ object Clock {
     }
 
   @annotation.tailrec
-  private def equal2[I, V](e1: Entries[I, V], e2: Entries[I, V])(implicit EI: Equal[I], EV: Equal[V]): Boolean = (e1, e2) match {
+  private def equal2[I, V](e1: Entries[I, V], e2: Entries[I, V])(implicit E: Equal[I]): Boolean = (e1, e2) match {
     case (Nil, Nil) => true
-    case ((i1, n1, l1)::t1, (i2, n2, l2)::t2) if EI.equal(i1, i2) && n1 == n2 && l1.length == l2.length => equal2(t1, t2)
+    case ((i1, n1, l1)::t1, (i2, n2, l2)::t2) if E.equal(i1, i2) && n1 == n2 && l1.length == l2.length => equal2(t1, t2)
     case (_, _) => false
   }
 
-  implicit def equalInstance[I: Equal, V: Equal] = new Equal[Clock[I, V]] {
+  implicit def equalInstance[I: Equal, V] = new Equal[Clock[I, V]] {
     def equal(c1: Clock[I, V], c2: Clock[I, V]) = equal2(c1.entries, c2.entries)
   }
 }
